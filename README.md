@@ -4,7 +4,7 @@
 #include <bitset>
 using namespace std;
 
-// Convertit une chaîne en bits
+
 string messageToBinary(const string& message) {
     string binary;
     for (char c : message) {
@@ -13,7 +13,7 @@ string messageToBinary(const string& message) {
     return binary;
 }
 
-// Convertit une chaîne binaire en texte
+
 string binaryToMessage(const string& binary) {
     string message;
     for (size_t i = 0; i + 7 < binary.size(); i += 8) {
@@ -25,7 +25,7 @@ string binaryToMessage(const string& binary) {
     return message;
 }
 
-// Fonction d'encodage
+
 void encoderBMP(const string& inputFile, const string& outputFile, const string& message) {
     ifstream in(inputFile, ios::binary);
     if (!in) {
@@ -36,7 +36,7 @@ void encoderBMP(const string& inputFile, const string& outputFile, const string&
     vector<unsigned char> data((istreambuf_iterator<char>(in)), {});
     in.close();
 
-    // Récupère l'offset vers les données pixels (à l'octet 10)
+
     int offset = *reinterpret_cast<int*>(&data[10]);
 
     string binaryMessage = messageToBinary(message + "#");
@@ -64,7 +64,7 @@ void encoderBMP(const string& inputFile, const string& outputFile, const string&
     cout << "Message encodé avec succès dans '" << outputFile << "'.\n";
 }
 
-// Fonction de décodage
+
 void decoderBMP(const string& inputFile) {
     ifstream in(inputFile, ios::binary);
     if (!in) {
